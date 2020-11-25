@@ -10,4 +10,16 @@ public class GameService {
     public void mainCycle() {
 
     }
+
+    private void start() {
+
+    }
+
+    private void stop() {
+
+    }
+
+    private void pause() {
+
+    }
 }

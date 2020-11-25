@@ -34,12 +34,23 @@ public abstract class GameField {
 
     public abstract void drawField();
 
-    //check if some lines filled and shift all values
+    //check if some lines filled and shift all values and call creation of new shape
     //TODO to be implemented
     public void checkFilledLines() {
         currentShape.move(Direction.DOWN);
         if (currentShape.isGroundTouched()) {
             currentShape = null;
         }
+    }
+
+    //check if figure touched ground or walls and return collision direction (for current Shape)
+    //will return Direction.UP if no collision
+    public Direction checkcollision() {
+        return Direction.UP;
+    }
+
+    //refresh field data - called every game iteration
+    public void update() {
+
     }
 }
