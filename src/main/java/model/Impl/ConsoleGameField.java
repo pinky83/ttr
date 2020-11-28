@@ -9,12 +9,17 @@ public class ConsoleGameField extends GameField {
     }
 
     @Override
+    //TODO need to implement colored output
     public void drawField() {
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < height; y++) {
-                System.out.print(fieldArray[x][y]);
+        System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT +
+                "* * * * * * * * * * * * * * *  *" + ConsoleColors.RESET);
+        for (int x = 0; x < height; x++) {
+            System.out.print(ConsoleColors.CYAN_BOLD_BRIGHT + "*" + ConsoleColors.RESET);
+            for (int y = 0; y < width; y++) {
+                System.out.print(" " + fieldArray[y][x] + " ");
             }
-            System.out.println();
+            System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT + "*" + ConsoleColors.RESET);
         }
+        System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT + "* * * * * * * * * * * * * * *  *" + ConsoleColors.RESET);
     }
 }

@@ -6,6 +6,10 @@ public class Shape {
     private int xCoord;
     private int yCoord;
 
+    private ShapeColor color;
+
+    private Orientation orientation;
+
     //down right corner of the shape
     private int x2Coord;
     private int y2Coord;
@@ -24,6 +28,7 @@ public class Shape {
         width = shapeArray[0].length;
         height = shapeArray.length;
         y2Coord = yCoord + (width - 1);
+        color = ShapeColor.randomColor();
     }
 
     public int getxCoord() {
@@ -42,6 +47,26 @@ public class Shape {
         return height;
     }
 
+    public ShapeColor getColor() {
+        return color;
+    }
+
+    public void setColor(ShapeColor color) {
+        this.color = color;
+    }
+
+    public Orientation getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
+    }
+
+    public char[][] getShapeArray() {
+        return shapeArray;
+    }
+
     public boolean isGroundTouched() {
         return groundTouched;
     }
@@ -53,8 +78,21 @@ public class Shape {
     }
 
     //TODO to be implemented
+    //standard clockwise rotation of 2d char array without y coord correction
+    //need to take care about y coord correction in some other place
     public void rotate() {
-
+        int currentX = 0;
+        int currentY = 0;
+        char[][] rotated = new char[shapeArray[0].length][shapeArray.length];
+        for(int i = 0; i < shapeArray[0].length; i++){
+            currentY = 0;
+            for(int j = shapeArray.length-1; j >= 0; j--){
+                rotated[currentX][currentY] = shapeArray[j][i];
+                currentY++;
+            }
+            currentX++;
+        }
+        shapeArray = rotated;
     }
 
     //TODO to be implemented

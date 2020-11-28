@@ -20,8 +20,13 @@ public abstract class GameField {
         }
     }
 
+    public char[][] getFieldArray() {
+        return fieldArray;
+    }
+
     public void setCurrentShape(Shape currentShape) {
         this.currentShape = currentShape;
+        addShape(currentShape);
     }
 
     public int getWidth() {
@@ -52,5 +57,47 @@ public abstract class GameField {
     //refresh field data - called every game iteration
     public void update() {
 
+    }
+
+    //adding current shape data to game field with
+    private Shape addShape(Shape shape) {
+        switch (shape.getOrientation()) {
+            case LANDSCAPE_LEFT:
+                //need to rotate two times for getting this position from
+                // default LANDSCAPE_RIGHT (for live rotate also need to correct y coordinate)
+                shape.rotate();
+                shape.rotate();
+                updateGameFieldArray(shape.getyCoord());
+                break;
+            case LANDSCAPE_RIGHT:
+                updateGameFieldArray(shape.getyCoord());
+                break;
+            case PORTRAIT_UP:
+                shape.rotate();
+                shape.rotate();
+                shape.rotate();
+                updateGameFieldArray(shape.getyCoord());
+                break;
+            case PORTRAIT_DOWN:
+                shape.rotate();
+                updateGameFieldArray(shape.getyCoord());
+                break;
+        }
+
+        return this.currentShape;
+    }
+
+    private void updateGameFieldArray(int yCoord) {
+        int currentY;
+        int currentX = 0;
+
+        for (int x = currentShape.getxCoord(); x < currentShape.getxCoord() + currentShape.getShapeArray().length; x++) {
+            currentY = 0;
+            for (int y = yCoord; y < yCoord + currentShape.getShapeArray()[0].length; y++) {
+                fieldArray[y][x] = currentShape.getShapeArray()[currentX][currentY];
+                currentY++;
+            }
+            currentX++;
+        }
     }
 }

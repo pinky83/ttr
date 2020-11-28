@@ -12,20 +12,16 @@ import static org.junit.jupiter.api.Assertions.fail;
 class ShapeTest {
 
     private ConsoleGameField consoleGameField = new ConsoleGameField(10, 40);
-    private char[][] shortLine = {{'O','O','O'}};
-    private char[][] sqare = {{'O','O'},
-                              {'O','O'}};
+    private char[][] shortLine = {{'X','X','X'},
+                                  {'O','O','X'}};
+    private char[][] sqare = {{'X','X'},
+                              {'X','X'}};
 
     private Shape currentShape = new Shape(1, shortLine);
 
-    @BeforeAll
-    static void beforeAll() {
-
-    }
-
     @BeforeEach
     void setUp() {
-
+        consoleGameField.init();
     }
 
     @AfterEach
@@ -34,12 +30,37 @@ class ShapeTest {
     }
 
     @Test
-    void isGroundTouched() {
+    void testMoveLeftWithoutCollision() {
         fail("Not implemented");
     }
 
     @Test
-    void move() {
+    void testMoveLeftWithCollision() {
+        fail("Not implemented");
+    }
+
+    @Test
+    void testMoveRightWithoutCollision() {
+        fail("Not implemented");
+    }
+
+    @Test
+    void testMoveRightWithCollision() {
+        fail("Not implemented");
+    }
+
+    @Test
+    void testMoveDownWithoutCollision() {
+        fail("Not implemented");
+    }
+
+    @Test
+    void testMoveDownWithCollision() {
+        fail("Not implemented");
+    }
+
+    @Test
+    void testGroundTouched() {
         fail("Not implemented");
     }
 
